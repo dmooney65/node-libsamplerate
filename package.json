@@ -1,0 +1,29 @@
+{
+    "name": "node-libsamplerate",
+    "version": "1.0.0",
+    "description": "Native bindings for libsamplerate",
+    "main": "index.js",
+    "keywords": [
+        "mediainfo"
+    ],
+    "scripts": {
+        "install": "cmake-js compile",
+        "build:dev": "cmake-js build --debug",
+        "build": "cmake-js build",
+        "rebuild:dev": "cmake-js rebuild --debug",
+        "rebuild": "cmake-js rebuild",
+        "clean": "node-gyp clean"
+    },
+    "dependencies": {
+        "bindings": "^1.3.0",
+        "cmake-js": "^3.7.3",
+        "node-addon-api": "^1.4.0"
+    },
+    "engines": {
+        "node": ">=8.0.0"
+    },
+    "repository": "github:dmooney65/node-libsamplerate",
+    "bugs": {
+        "url": "https://github.com/dmooney65/node-libsamplerate/issues"
+    }
+}
