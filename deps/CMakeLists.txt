@@ -52,18 +52,6 @@ check_type_size(long SIZEOF_LONG)
 # This will set CPU_CLIPS_NEGATIVE and CPU_CLIPS_POSITIVE
 clip_mode()
 
-find_package(ALSA)
-set(HAVE_ALSA ${ALSA_FOUND})
-if(ALSA_FOUND)
-  include_directories("${ALSA_INCLUDE_DIR}")
-endif()
-
-find_package(FFTW)
-set(HAVE_FFTW3 ${FFTW_FOUND})
-if(FFTW_FOUND)
-  include_directories("${FFTW_INCLUDE_DIR}")
-endif()
-
 configure_file(${PROJECT_SOURCE_DIR}/libsamplerate/config.h.in ${CMAKE_CURRENT_BINARY_DIR}/config.h)
 
 add_library(samplerate ${SAMPLERATE_SRC})
