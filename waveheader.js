@@ -1,4 +1,6 @@
-//var debug = require('debug')('waveheader');
+/* dmooney65 - Modified to work with 24bit
+ * This file is here purely for testing purposes.
+ * /
 
 /*
  * WaveHeader
@@ -69,13 +71,14 @@ module.exports = generateHeader = (length, options) => {
     offset += 4;
 
     // write the byte rate
-    //var byteRate = sampleRate * channels * bitDepth / 8;
+    var byteRate;// = sampleRate * channels * bitDepth / 8;
+    var blockAlign;
     if(bitDepth == 16){
-        var byteRate = sampleRate * channels * 2;
-        var blockAlign = channels * 2;
+        byteRate = sampleRate * channels * 2;
+        blockAlign = channels * 2;
     } else {
-        var byteRate = sampleRate * channels * 4;
-        var blockAlign = channels * 4;
+        byteRate = sampleRate * channels * 4;
+        blockAlign = channels * 4;
     }
     header['writeUInt32' + endianness](byteRate, offset);
     offset += 4;

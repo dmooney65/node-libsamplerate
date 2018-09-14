@@ -5,7 +5,7 @@
 
 #include <math.h>
 
-#include "node-libsamplerate.h"
+#include "./node-libsamplerate.h"
 
 void s24_to_float_array(const int *in, float *out, int len)
 {
@@ -27,14 +27,17 @@ void float_to_s24_array(const float *in, int *out, int len)
         len--;
 
         scaled_value = in[len] * (8.0 * 0x200000);
-        if (CPU_CLIPS_POSITIVE == 0 && scaled_value >= (1.0 * 0xFFFFFF))
+        if(scaled_value!= 0 ){
+            double d = scaled_value;
+        }
+        if (scaled_value >= (1.0 * 0x7FFFFF))
         {
-            out[len] = 0xffffff;
+            out[len] = 0x7fffff;
             continue;
         };
-        if (CPU_CLIPS_NEGATIVE == 0 && scaled_value <= (-8.0 * 0x200000))
+        if (scaled_value <= (-8.0 * 0x200000))
         {
-            out[len] = -1 - 0xffffff;
+            out[len] = -1 - 0x7fffff;
             continue;
         };
 
@@ -76,9 +79,7 @@ SampleRateStream::SampleRateStream(const Napi::CallbackInfo &info)
         napi_value e;
         napi_get_element(env, propNames, i, &e);
         std::string key = Napi::String(env, e).Utf8Value();
-        std::cout << "key " << key << std::endl;
         uint32_t value = inProps.Get(key).As<Napi::Number>().Uint32Value();
-        std::cout << "value " << value << std::endl;
         props.Set(Napi::String::New(env, key), value);
     }
     uint32_t type = inProps.Get("type").As<Napi::Number>().Uint32Value();
@@ -118,6 +119,10 @@ Napi::Value SampleRateStream::Transform(const Napi::CallbackInfo &info)
     unsigned int outputFrames = (data.src_ratio * inputFrames) + 1;
     unsigned int lengthOut = (int)floor(data.src_ratio * lengthIn);
 
+    if(fromDepth == 16 && toDepth !=16){
+        lengthOut = lengthOut * 2;
+    }
+
     float *dataOutFloat = new float[lengthOut];
     float *dataInFloat = new float[lengthIn];
 
@@ -153,9 +158,9 @@ Napi::Value SampleRateStream::Transform(const Napi::CallbackInfo &info)
     int *dataOut = new int[lengthOut];
     int inFramesUsed = data.input_frames_used;
     int frameDiff = data.input_frames - data.input_frames_used;
-    if (frameDiff > 0)
+    if (frameDiff != 0)
     {
-        std::cout << "outframes less than inframes by " << frameDiff << std::endl;
+        std::cout << "outframes differs from inframes by " << frameDiff << std::endl;
     }
 
     if (toDepth == 16)
@@ -176,7 +181,6 @@ Napi::Value SampleRateStream::Transform(const Napi::CallbackInfo &info)
 
 void SampleRateStream::SetRatio(const Napi::CallbackInfo &info)
 {
-    std::cout << "setRatio called" << std::endl;
     double ratio = info[0].As<Napi::Number>().DoubleValue();
     data.src_ratio = ratio;
 }

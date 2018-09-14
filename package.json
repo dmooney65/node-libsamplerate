@@ -4,7 +4,26 @@
     "description": "Native bindings for libsamplerate",
     "main": "index.js",
     "keywords": [
-        "mediainfo"
+        "libsamplerate",
+        "audio",
+        "sample",
+        "rate",
+        "convert",
+        "resample",
+        "downsample",
+        "upsample",
+        "n-api",
+        "node-addon-api",
+        "cmake-js",
+        "S16_LE",
+        "S32_LE",
+        "pcm",
+        "wav",
+        "44100",
+        "48000",
+        "192000",
+        "882000",
+        "96000"
     ],
     "scripts": {
         "install": "cmake-js compile",
