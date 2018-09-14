@@ -3,6 +3,7 @@
     "version": "1.0.0",
     "description": "Native bindings for libsamplerate",
     "main": "index.js",
+    "license": "MIT",
     "keywords": [
         "libsamplerate",
         "audio",
@@ -18,12 +19,7 @@
         "S16_LE",
         "S32_LE",
         "pcm",
-        "wav",
-        "44100",
-        "48000",
-        "192000",
-        "882000",
-        "96000"
+        "wav"
     ],
     "scripts": {
         "install": "cmake-js compile",
