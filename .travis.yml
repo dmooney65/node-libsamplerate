@@ -1,0 +1,7 @@
+
+language: node_js
+
+sudo: enabled
+
+script:
+  - npm install
