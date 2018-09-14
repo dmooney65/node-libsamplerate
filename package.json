@@ -23,6 +23,7 @@
     ],
     "scripts": {
         "install": "cmake-js compile",
+        "test": "mocha test/tests.js",
         "build:dev": "cmake-js build --debug",
         "build": "cmake-js build",
         "rebuild:dev": "cmake-js rebuild --debug",
@@ -40,5 +41,11 @@
     "repository": "github:dmooney65/node-libsamplerate",
     "bugs": {
         "url": "https://github.com/dmooney65/node-libsamplerate/issues"
+    },
+    "devDependencies": {
+        "audio-generator": "^2.1.2",
+        "black-hole-stream": "0.0.1",
+        "mocha": "^5.2.0",
+        "sinon": "^6.3.3"
     }
 }
