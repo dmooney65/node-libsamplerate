@@ -23,7 +23,7 @@
     ],
     "scripts": {
         "install": "cmake-js compile",
-        "test": "mocha test/tests.js",
+        "test": "nyc mocha test/*.test.js",
         "build:dev": "cmake-js build --debug",
         "build": "cmake-js build",
         "rebuild:dev": "cmake-js rebuild --debug",
@@ -32,7 +32,7 @@
     },
     "dependencies": {
         "bindings": "^1.3.0",
-        "cmake-js": "^3.7.3",
+        "cmake-js": "^4.0.0",
         "node-addon-api": "^1.4.0"
     },
     "engines": {
@@ -44,8 +44,18 @@
     },
     "devDependencies": {
         "audio-generator": "^2.1.2",
-        "black-hole-stream": "0.0.1",
         "mocha": "^5.2.0",
+        "nyc": "^13.0.1",
         "sinon": "^6.3.3"
+    },
+    "nyc": {
+        "extension": [
+          ".js"
+        ],
+        "exclude": [
+          "example.js",
+          "waveheader.js",
+          "test/*.js"
+        ]
     }
 }
