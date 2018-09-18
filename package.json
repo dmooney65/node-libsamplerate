@@ -6,6 +6,7 @@
     "license": "MIT",
     "keywords": [
         "libsamplerate",
+        "samplerate",
         "audio",
         "sample",
         "rate",
@@ -42,6 +43,7 @@
     "bugs": {
         "url": "https://github.com/dmooney65/node-libsamplerate/issues"
     },
+    "homepage": "https://github.com/dmooney65/node-libsamplerate#readme",
     "devDependencies": {
         "audio-generator": "^2.1.2",
         "mocha": "^5.2.0",

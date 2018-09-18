@@ -5,18 +5,18 @@ const header = require('./waveheader.js');
 
 
 let options = {
-    type: SampleRate.SRC_SINC_BEST_QUALITY,
+    type: SampleRate.SRC_SINC_MEDIUM_QUALITY,
     channels: 2, 
     fromRate: 44100, 
-    fromDepth: 24,
-    toRate: 44100, 
-    toDepth: 24
+    fromDepth: 16,
+    toRate: 48000, 
+    toDepth: 32
 }
 
 const resample = new SampleRate(options);
 // Start read at byte 44 to avoid WAV header data
-var rs = fs.createReadStream('rec.wav', {start: 44});
-var ws = fs.createWriteStream('out.wav');
+var rs = fs.createReadStream('infile.wav', {start: 44});
+var ws = fs.createWriteStream('outfile.wav');
 
 ws.write(header(0, {
     bitDepth: options.toDepth,

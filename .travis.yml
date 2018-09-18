@@ -1,10 +1,15 @@
-
 dist: trusty
 language: node_js
-
 node_js:
-    - "8"
-    - "10"
-
+- '8'
+- '10'
 before_install:
-    - npm i -g npm@latest
+- npm i -g npm@latest
+deploy:
+  provider: npm
+  email: dominic.mooney99@gmail.com
+  api_key:
+    secure: yXOrGOpHpIH1fNx9+37sr/SeF5VbmCJbS0i2khet8wew+wrX/5RXdc3anzEPO+loyttHMKWrALlDmNhcL9nZoFWAe3TGkA0LzbH5Od1errfLWvNU5UaGop0einpOzCsfLCZN7boVUBpM9JaW57uC0wn7vy9A9xexXNxhYT3d04oJcKg5Fg/sIk2ybrcVEiNlcUltGhlAi4pmp35FbuCg+TrjYZNOjo0uXoF3rpEwnLMfpgjmcWr6uX+ooos9YDGIr93FSRL+mY/Zl7E0ywaaitmks10s/T/KO5FUHdekmZwi85gDqinFstZAkIPdrtkC1w3L1vJRaAxrd5kUoFSzEWdeikmQkKg7sMkkr+6AaQCTsE2XNi7PFKmr4bHeW12lj49TlhQEy3kssi+hEPVBP4c0tppIOoBwjQsKlO08X8QYdntqTe2AMf/FC+BPUl8J7sQViihkJjfJ04FhuzPSH/qVaq8+gNHshaQ7bpQhabs1NBExlgXttnnOH/zf5FGpRje30Gc33BvvR9YmdTe2nI0EyzZgIDSGR2NYyo7iAUZYXu87EJAyyZABsO0HXJ8SphiJm99lvTMhTlD6pmQGkQ5mPZ+zrvaclYjyJ4OiobOxdVweR48MvkiiWEFsWUH93I5l621EgSdBk+EPkPfcqZiBe1WlZHfLuQ4M+9Nb378=
+  on:
+    tags: true
+    repo: dmooney65/node-libsamplerate
