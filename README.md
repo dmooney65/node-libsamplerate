@@ -29,7 +29,7 @@ where options is an object of the form:
 ```javascript
 let options = {
     // Value can be from 0 to 4 or using enum. 0 is the best quality and the slowest.
-    type: SampleRate.SRC_SINC_MEDIUM_QALITY,
+    type: SampleRate.SRC_SINC_MEDIUM_QUALITY,
     // Stereo
     channels: 2,
     // Sample rate of source
