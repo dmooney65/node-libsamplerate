@@ -87,7 +87,7 @@ SampleRateStream::SampleRateStream(const Napi::CallbackInfo &info)
     uint32_t fromRate = inProps.Get("fromRate").As<Napi::Number>().Uint32Value();
     uint32_t toRate = inProps.Get("toRate").As<Napi::Number>().Uint32Value();
     double ratio = (double)toRate / (double)fromRate;
-    data.src_ratio = ratio;
+    src_ratio = ratio;
     int error;
     if ((src_state = src_new(type, channels, &error)) == NULL)
     {
@@ -108,6 +108,9 @@ Napi::Value SampleRateStream::Transform(const Napi::CallbackInfo &info)
     uint32_t toDepth = props.Get("toDepth").As<Napi::Number>().Uint32Value();
     uint32_t channels = props.Get("channels").As<Napi::Number>().Uint32Value();
     int error;
+
+    // Set data.src_ratio to target ratio in case of more than two streams
+    data.src_ratio = src_ratio;
 
     // Frame length 2 for 16bit, 4 for 32bit and 24bit, for each channel
     unsigned int depth = fromDepth;
@@ -144,6 +147,10 @@ Napi::Value SampleRateStream::Transform(const Napi::CallbackInfo &info)
     data.input_frames = inputFrames;
     data.output_frames = outputFrames;
 
+    if ((error = src_set_ratio(src_state, data.src_ratio)))
+    {
+        throw Napi::Error::New(info.Env(), src_strerror(error));
+    }
     if ((error = src_process(src_state, &data)))
     {
         throw Napi::Error::New(info.Env(), src_strerror(error));
