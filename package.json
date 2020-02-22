@@ -23,7 +23,7 @@
         "wav"
     ],
     "scripts": {
-        "install": "cmake-js compile",
+        "install": "cmake-js build",
         "test": "nyc mocha test/*.test.js",
         "build:dev": "cmake-js build --debug",
         "build": "cmake-js build",
@@ -33,7 +33,7 @@
     },
     "dependencies": {
         "bindings": "^1.3.0",
-        "cmake-js": "^4.0.0",
+        "cmake-js": "^6.0.0",
         "node-addon-api": "^1.4.0"
     },
     "engines": {
