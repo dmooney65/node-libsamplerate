@@ -23,7 +23,7 @@
         "wav"
     ],
     "scripts": {
-        "install": "cmake-js build",
+        "install": "cmake-js rebuild",
         "test": "nyc mocha test/*.test.js",
         "build:dev": "cmake-js build --debug",
         "build": "cmake-js build",
