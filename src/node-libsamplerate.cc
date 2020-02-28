@@ -183,6 +183,9 @@ Napi::Value SampleRateStream::Transform(const Napi::CallbackInfo &info)
         src_float_to_int_array(dataOutFloat, (int *)dataOut, lengthOut);
     }
 
+    delete[] dataOutFloat;
+    delete[] dataInFloat;
+    
     return Napi::Buffer<char>::New(env, (char *)dataOut, lengthOut);
 }
 
