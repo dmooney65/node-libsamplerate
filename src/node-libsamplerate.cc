@@ -186,7 +186,11 @@ Napi::Value SampleRateStream::Transform(const Napi::CallbackInfo &info)
     delete[] dataOutFloat;
     delete[] dataInFloat;
     
-    return Napi::Buffer<char>::New(env, (char *)dataOut, lengthOut);
+    // See https://github.com/nodejs/node-addon-api/blob/master/doc/buffer.md#new-1
+    Napi::Buffer<char> result = Napi::Buffer<char>::Copy(env, (char *)dataOut, lengthOut);
+    delete[] dataOut;
+    
+    return result;
 }
 
 void SampleRateStream::SetRatio(const Napi::CallbackInfo &info)
