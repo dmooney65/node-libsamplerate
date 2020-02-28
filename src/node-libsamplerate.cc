@@ -196,7 +196,7 @@ Napi::Value SampleRateStream::Transform(const Napi::CallbackInfo &info)
 void SampleRateStream::SetRatio(const Napi::CallbackInfo &info)
 {
     double ratio = info[0].As<Napi::Number>().DoubleValue();
-    data.src_ratio = ratio;
+    src_ratio = ratio;
 }
 
 void SampleRateStream::Reset(const Napi::CallbackInfo &info)

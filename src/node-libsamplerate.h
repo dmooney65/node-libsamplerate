@@ -1,7 +1,5 @@
 #include <napi.h>
 
-#include "../deps/include/samplerate.h"
-
 class SampleRateStream : public Napi::ObjectWrap<SampleRateStream> {
     public:
         static Napi::Object Init(Napi::Env env, Napi::Object exports);
