@@ -11,4 +11,5 @@ class SampleRateStream : public Napi::ObjectWrap<SampleRateStream> {
         Napi::Value Transform(const Napi::CallbackInfo& info);
         void SetRatio(const Napi::CallbackInfo& info);
         void Reset(const Napi::CallbackInfo& info);
+        double src_ratio;
 };
